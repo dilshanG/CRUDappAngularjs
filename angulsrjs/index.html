@@ -1,0 +1,49 @@
+
+<!Doctype html>
+<html>
+
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
+        <script src="customer.js"></script>
+
+    <body ng-app="customer-app" ng-controller="customerController">
+            <h1 class="topic">AngularJS CRUD Application</h1>
+         <div class="custForm" >
+                <h1>Customers</h1>
+                <form name="myForm"  #myForm="ngForm"  >
+              
+                    <input type="text" name="cname" required  ng-model="customer.cname" placeholder="Customer Name"/>
+                    <input type="text" name="nic" required  ng-model="customer.nic" placeholder="NIC"/>
+                    <button class ="submit" ng-click="add()" >Add</button>
+                    <Button  class="submit" ng-click = "reset()">Reset</Button>
+                </form>
+              
+         </div>
+
+
+         <div >   
+         <table  class="customerTable">
+                <thead>
+                    <tr>
+                        <th>Customer Name</th>
+                        <th>NIC</th>
+                        <th></th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="cust in customers"> 
+                        <td>{{cust.cname}}</td>
+                        <td>{{cust.nic}}</td>
+                        <td><button ng-click="delete(cust)" class="delete">X</button></td>
+                    </tr>
+                </tbody>
+         </table>
+        </div>
+
+</body>
+
+</html>
+
+
+  

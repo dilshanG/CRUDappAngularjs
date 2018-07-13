@@ -1,0 +1,64 @@
+  .topic{
+    padding-left: 35%;
+    color: rgb(129, 16, 16);
+  }
+  h1{
+    padding-left: 35%;
+    color: blueviolet;
+  }
+  input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .submit{
+    width: 100%;
+    background-color: rgb(31, 43, 214);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .submit:hover {
+    background-color: #0e065e;
+  }
+  
+  .custForm {
+    width: 50%;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 50px;
+    margin:auto;
+  }
+  button.delete {
+    background-color: rgb(224, 18, 18) !important;
+    color: white;
+  }
+  
+  
+  .customerTable {
+    margin-top: 20px;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .customerTable td, .customerTable th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  .customerTable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+  }
