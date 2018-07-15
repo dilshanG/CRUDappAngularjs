@@ -6,7 +6,7 @@
  */
 
 module.exports = {
-    
+
 customerAdding: function (req, res) {
 
         var cname = req.body.cname;
@@ -17,14 +17,14 @@ customerAdding: function (req, res) {
         sails.log.debug(cname);
 
 
-    
+
         var values = {
           cname : cname,
           nic  : nic
         };
-    
+
         Customers.create(values).exec(function (err, customer) {
-    
+
           if (err) {
             return res.serverError(err);
           }
@@ -33,10 +33,10 @@ customerAdding: function (req, res) {
       },
   updateCustomer: function( req, res){
 
-        var cname = req.body.cname;  
+        var cname = req.body.cname;
         var nic = req.body.nic;
-      
-        var valOne = { 
+
+        var valOne = {
         nic: req.body.nic
       }
       //  var valOne = { cname: req.param('cname')};
@@ -50,7 +50,7 @@ customerAdding: function (req, res) {
           cname : cname,
           nic  : nic
         }
-     
+
         Customers.update(valOne,values).exec(function (err, customer){
 
           if(err){
@@ -59,53 +59,57 @@ customerAdding: function (req, res) {
           return res.json(customer);
         });
   },
-    
+
   findCustomer: function (req, res) {
- 
+
         var criteria = { nic: req.param('nic') };
         Customers.findOne(criteria).exec(function (err, customer) {
-    
+
           if (err) {
             return res.serverError(err);
           }
-    
+
           if (customer) {
             return res.json(customer);
           }
-    
+
         });
   },
   deleteCustomer: function (req, res) {
-   
+    sails.log.info('customer delete');
          var criteria = { nic: req.param('nic')};
+        //  var criteria  = { nic: req.body.nic};
+
+         sails.log.debug(criteria);
         // var criteria = { nic: req.body('nic')};
-        
-        console.log(criteria);
+
+
         Customers.destroy(criteria).exec(function (err, customer){
+          sails.log('in destroy')
           if(err){
               return res.serverError(err);
           }
-    
+          sails.log('sa');
             return res.json(customer);
-    
+
         });
-    
+
   },
   loadCustomers: function (req, res) {
 
-       
+       sails.log('customer load');
         Customers.find({}).exec(function (err, customer) {
-    
+
           if (err) {
             return res.serverError(err);
           }
-    
+
           if (customer) {
             return res.json(customer);
           }
-    
+
         });
   },
-    
+
 };
 

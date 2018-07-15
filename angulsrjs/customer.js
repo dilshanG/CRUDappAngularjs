@@ -2,14 +2,15 @@
 
 var customerapp = angular.module("customer-app", []);
 
-customerapp.controller('customerController',  function($scope, CustomerService){
+customerapp.controller('customerController', function($scope, CustomerService){
    
-   
-    angular.element(document).ready(function () {
 
+
+
+    angular.element(document).ready(function () {
         $scope.getCustomers();
+    
     });
-   
 
     $scope.getCustomers = function(){
         CustomerService.getCustomers().then(function success(response){
@@ -28,31 +29,55 @@ customerapp.controller('customerController',  function($scope, CustomerService){
        
     }
 
-
     $scope.reset = function(){
         console.log("reset");
-        $scope.cname = "";
-        $scope.nic  = "";
+        $scope.customer.cname = "";
+        $scope.customer.nic  = "";
     }
 
     $scope.add = function(){
         CustomerService.addCustomer($scope.customer.cname, $scope.customer.nic);
+        $scope.getCustomers();
+        $scope.reset();
       
     }
     $scope.delete = function(cust){
-         $scope.nic = cust.nic;
-        CustomerService.deleteCustomer($scope.nic);
+        $scope.nic = cust.nic;
+        CustomerService.deleteCustomer($scope.nic)
+            .then(
+            function success(response){
+            if(response.statusText == "OK")  {
+                alert('Successfully Delete');
+            }
+            else{
+                
+            }
+            },
+            function error(response){
+                 console.log('errnr is ' + response);
+            });
+        }
+    $scope.rowclick = function(cust){
+          
+
+            
     }
+        
+
   
    
 
 });
 
 
+   
+
+
+
 // Service methods
 
 customerapp.service('CustomerService', function($http){
-    this.addCustomer = function addCustomer(cname, nic){
+    this.addCustomer = function(cname, nic){
         return $http({
             method: 'POST',
             url: 'http://localhost:1337/api/Customers',
@@ -63,18 +88,18 @@ customerapp.service('CustomerService', function($http){
 
         });
     }
-    this.getCustomers = function getCustomers(){
+    this.getCustomers = function(){
         return $http({
             method: 'GET',
             url: 'http://localhost:1337/api/Customers/loadCustomers'
             
         });
     }
-    this.deleteCustomer = function deleteCustomer(nic){
+    this.deleteCustomer = function(nic){
         return $http({
             method: 'DELETE',
-            ur: 'http://localhost:1337/api/Customers/deleteCustomer/'+nic
-        })
+            url: 'http://localhost:1337/api/Customers/deleteCustomer?nic=' + nic
+        });
 
     }    
 });

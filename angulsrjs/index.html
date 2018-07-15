@@ -4,9 +4,10 @@
 
         <link rel="stylesheet" type="text/css" href="style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
         <script src="customer.js"></script>
 
-    <body ng-app="customer-app" ng-controller="customerController">
+    <body ng-app="customer-app" ng-controller="customerController" ng-onload="init()" >
             <h1 class="topic">AngularJS CRUD Application</h1>
          <div class="custForm" >
                 <h1>Customers</h1>
@@ -15,7 +16,8 @@
                     <input type="text" name="cname" required  ng-model="customer.cname" placeholder="Customer Name"/>
                     <input type="text" name="nic" required  ng-model="customer.nic" placeholder="NIC"/>
                     <button class ="submit" ng-click="add()" >Add</button>
-                    <Button  class="submit" ng-click = "reset()">Reset</Button>
+                    <button class = "submit" ng-click="add()" >Update</button>
+                    <button  class="submit" ng-click = "reset()">Reset</button>
                 </form>
               
          </div>
@@ -32,7 +34,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="cust in customers"> 
+                    <tr ng-repeat="cust in customers" ng-click="rowclick(cust)"> 
                         <td>{{cust.cname}}</td>
                         <td>{{cust.nic}}</td>
                         <td><button ng-click="delete(cust)" class="delete">X</button></td>
