@@ -6,10 +6,19 @@
     padding-left: 35%;
     color: blueviolet;
   }
-  input[type=text], select {
+  .textInput, select {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  .searchbox{
+    width :20%;
+    padding: 12px 20px;
+    margin-top: 10px;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -45,7 +54,6 @@
   
   
   .customerTable {
-    margin-top: 20px;
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
